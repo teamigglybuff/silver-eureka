@@ -18,7 +18,22 @@ function cartReducer(state = initialState, action) {
         cartItems,
       });
     case types.DELETE_FROM_CART:
-      
+      for (let i = 0; i < state.cartItems.length; i += 1) {
+        if (state.cartItems[i].id === payload) {
+          const cartItems = state.cartItems.slice();
+          cartItems.splice(i, 1);
+          return ({
+            ...state,
+            cartItems,
+          });
+        }
+      }
+      break;
+    case types.GET_CART:
+      return ({
+        ...state,
+        cartItems: payload,
+      });
     default:
       return state;
   }
