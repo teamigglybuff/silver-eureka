@@ -15,6 +15,9 @@ pool.query(createStore, (err) => {
   }
 })
 
+// Create shopping cart table
+
+
 
 module.exports = {
   query: (text, params, callback) => {
