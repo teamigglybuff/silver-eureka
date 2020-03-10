@@ -9,14 +9,10 @@ storeController.getStore = (req, res, next) => {
       log: err,
       message: 'Error with getting the store'
     })
-    res.locals.store = response.rows;
+    res.locals.product = response.rows;
     return next();
   })
 }
-
-// req.body.param.category
-// req.body.param.id
-
 
 // gets the item by category
 storeController.getByCategory = (req, res, next) => {
@@ -27,7 +23,21 @@ storeController.getByCategory = (req, res, next) => {
       log: err,
       message: 'Error with getting products by category'
     })
-    res.locals.category = response.rows;
+    res.locals.product = response.rows;
+    return next();
+  })
+}
+
+// gets the item by id
+storeController.getById = (req, res, next) => {
+  const id = req.body.param.id;
+  const item = 'SELECT * FROM store where id = $1'
+  db.query(item, [id], (err, response) => {
+    if (err) next({
+      log: err,
+      message: 'Error with getting products by Id'
+    })
+    res.locals.product = response.rows;
     return next();
   })
 }
