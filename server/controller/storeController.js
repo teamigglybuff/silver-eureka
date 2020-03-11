@@ -16,7 +16,7 @@ storeController.getStore = (req, res, next) => {
 
 // gets the item by category
 storeController.getByCategory = (req, res, next) => {
-  const category = req.body.param.category;
+  const { category } = req.params;
   const product = 'SELECT * FROM store WHERE category = $1'
   db.query(product, [category], (err, response) => {
     if (err) next({
@@ -30,7 +30,8 @@ storeController.getByCategory = (req, res, next) => {
 
 // gets the item by id
 storeController.getById = (req, res, next) => {
-  const id = req.body.param.id;
+  const { id } = req.params;
+  console.log('This is the id: ', id)
   const item = 'SELECT * FROM store where id = $1'
   db.query(item, [id], (err, response) => {
     if (err) next({
@@ -41,6 +42,7 @@ storeController.getById = (req, res, next) => {
     return next();
   })
 }
+
 
 
 module.exports = storeController;

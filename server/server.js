@@ -11,7 +11,7 @@ const PORT = 3000;
 
 
 app.use(express.json());
-
+app.use(express.urlencoded());
 app.use(express.static('public'));
 
 app.use('/dist', express.static(path.resolve(__dirname, '../dist/')));
@@ -36,12 +36,15 @@ app.use((req, res, next) => {
 // TODO should I send anything back here? 
 // Creates a new user
 app.post('/createUser', userControllers.addUser, (req, res, next) => {
+  console.log('HEY!!!')
   res.status(200).json("user created!");
 })
 
 app.get('/getUser', userControllers.checkUser, (req, res, next) => {
   res.status(200).json("User found!")
 })
+
+
 
 app.use('/products', productsRouter);
 
@@ -53,6 +56,7 @@ app.use((err, req, res, next) => {
     status: 400,
     message: 'Unknown error within middleware'
   }
+  console.log('This is the err', err)
   const newErr = Object.assign(defaultErr, err);
   return res.status(newErr.status).json(newErr.message);
 })

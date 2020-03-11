@@ -20,6 +20,6 @@ pool.query(createStore, (err) => {
 module.exports = {
   query: (text, params, callback) => {
     console.log("Executed query: ", text);
-    return Pool.query(text, params, callback);
+    return pool.query(text, params, callback);
   }
 }

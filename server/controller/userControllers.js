@@ -17,7 +17,7 @@ userControllers.addUser = (req, res, next) => {
   })
 }
 
-
+// TODO Need to work on this
 // Check for user
 userControllers.checkUser = (req, res, next) => {
   const user = {
