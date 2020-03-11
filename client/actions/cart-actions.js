@@ -5,18 +5,18 @@ export const addItem = (item) => ({
   payload: item,
 });
 
-export const deleteItem = (item_id) => ({
+export const deleteItem = (itemId) => ({
   type: types.DELETE_FROM_CART,
-  payload: item_id,
+  payload: itemId,
 });
 
-export const getCart = (user_id) => {
+export const getCart = (userId) => {
   const config = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ user_id }),
+    body: JSON.stringify({ userId }),
   };
 
   // Make sure to ask Will what is being sent back
