@@ -2,10 +2,14 @@ import React from 'react';
 import Login from '../components/Login.jsx';
 
 function MainContainer() {
+
+ function onLoginSubmit(){
+    
+  }
   return (
     <div>
       <p>Hoi Redux!</p>
-      <Login />
+      <Login onLoginSubmit = {this.onLoginSubmit} />
     </div>
   );
 }
