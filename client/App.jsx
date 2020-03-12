@@ -1,10 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import MainContainer from './containers/main-container.jsx'
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import MainContainer from './containers/main-container.jsx';
+import ProductContainer from './containers/product-container.jsx';
 
 function App() {
   return (
-    <MainContainer />
+    <Router>
+      <Route exact path="/">
+        <MainContainer />
+      </Route>
+      <Route path="/products/:id">
+        <ProductContainer />
+      </Route>
+    </Router>
   );
 }
 

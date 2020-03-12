@@ -8,7 +8,9 @@ const initialState = {
 
 function cartReducer(state = initialState, action) {
   const { type, payload } = action;
+
   switch (type) {
+
     case types.ADD_TO_CART:
       // eslint-disable-next-line no-case-declarations
       const cartItems = state.cartItems.slice();
@@ -17,6 +19,7 @@ function cartReducer(state = initialState, action) {
         ...state,
         cartItems,
       });
+
     case types.DELETE_FROM_CART:
       for (let i = 0; i < state.cartItems.length; i += 1) {
         if (state.cartItems[i].id === payload) {
@@ -29,11 +32,13 @@ function cartReducer(state = initialState, action) {
         }
       }
       break;
+
     case types.GET_CART:
       return ({
         ...state,
         cartItems: payload,
       });
+
     default:
       return state;
   }
