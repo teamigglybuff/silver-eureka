@@ -13,7 +13,7 @@ function ProductsDisplay() {
     dispatch(getAllProducts());
   }, []);
 
-  console.log(allProducts)
+  console.log(allProducts);
 
   const productsArray = displayedProducts.map((el) => (
     <OneProduct

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
+import NavBar from '../components/nav-bar.jsx'
+
 
 
 function productContainer () {
@@ -9,7 +11,6 @@ function productContainer () {
   // console.log(allProducts)
   // console.log('id', id)
   const currentProduct = allProducts.filter((el) => {
-    console.log('in this filter');
     return el.id === Number(id);
   });
 
@@ -18,6 +19,7 @@ function productContainer () {
   const { description, item, link, price } = currentProduct[0];
   return(
     <div id="productContainer">
+            <NavBar />
       <p>Hoi this is a product page</p>
       <br></br>
       <img src={link}></img>
