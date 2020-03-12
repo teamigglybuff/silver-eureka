@@ -14,6 +14,7 @@ function cartReducer(state = initialState, action) {
     case types.ADD_TO_CART:
       // eslint-disable-next-line no-case-declarations
       const cartItems = state.cartItems.slice();
+      console.log('Payload:', payload);
       cartItems.push(payload);
       return ({
         ...state,

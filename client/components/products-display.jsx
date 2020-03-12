@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import OneProduct from './one-product.jsx';
-import { getAllProducts }from '../actions/product-actions';
-
+import { getAllProducts } from '../actions/product-actions';
 
 function ProductsDisplay() {
   const allProducts = useSelector((state) => state.products.allProducts);
@@ -13,7 +12,13 @@ function ProductsDisplay() {
     dispatch(getAllProducts());
   }, []);
 
-  console.log(allProducts);
+  // console.log(allProducts);
+
+  const style = {
+    display: 'flex',
+    flexDirection: 'horizontal',
+    flexWrap: 'wrap',
+  };
 
   const productsArray = displayedProducts.map((el) => (
     <OneProduct
@@ -24,9 +29,9 @@ function ProductsDisplay() {
     />
   ));
   return (
-      <div>
-        {productsArray}
-      </div>
+    <div style={style}>
+      {productsArray}
+    </div>
   );
 }
 

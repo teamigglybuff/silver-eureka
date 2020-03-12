@@ -8,14 +8,22 @@ const style = {
   alignContent: 'center',
   justifyContent: 'center',
   color: 'pink',
-}
+};
+
+const styleBody = {
+  display: 'flex',
+  flexDirection: 'horizontal',
+};
+
 function BodyContainer() {
   return (
     <div id="bodyContainer" style={style}>
       <p>Hoidy Body</p>
       <NavBar />
-      <CategoriesDisplay />
-      <ProductsDisplay />
+      <div style={styleBody}>
+        <CategoriesDisplay />
+        <ProductsDisplay />
+      </div>
     </div>
   );
 }

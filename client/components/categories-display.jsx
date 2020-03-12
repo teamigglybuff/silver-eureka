@@ -13,13 +13,15 @@ function CategoriesDisplay () {
     };
 
     return (
-      <button onClick={filterProducts}>{el}</button>
+      <div>
+        <button onClick={filterProducts}>{el}</button>
+      </div>
     );
   });
 
   const filterAllProducts = () => {
     dispatch(getAllProducts());
-  }
+  };
 
   return (
     <div className="categoryLinks">

@@ -1,21 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, useParams, Link } from 'react-router-dom';
-import PreviewButton from './preview-add-button.jsx';
+// import PreviewButton from './preview-add-button.jsx';
 
 
-function OneProduct(props) {
+function cartItem(props) {
   const { nameOfItem, price, imageLink, id } = props;
 
   return (
     <div className="oneProduct" style={divStyle}>
       <Link to={`/products/${id}`}>
-        <img src={imageLink} alt={nameOfItem} width='200'/>
+        <img src={imageLink} alt={nameOfItem} width='150' />
       </Link>
       <Link to={`/products/${id}`}>
         <p className="description">{nameOfItem}</p>
       </Link>
       <p>{price}</p>
-      <PreviewButton item={props} />
+      {/* <PreviewButton item={props} /> */}
     </div>
   );
 }
@@ -28,4 +28,4 @@ const divStyle = {
   fontFamily: 'sans-serif',
 }
 
-export default OneProduct;
+export default cartItem;
