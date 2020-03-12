@@ -1,18 +1,8 @@
 /* eslint-disable no-case-declarations */
 import * as types from '../constants/action-types';
 
-const testItem = {
-  nameOfItem: 'Half scale hat 1 inch 24 miniature doll house artisan mini pillbox tiny flapper lady small Downton vintage antique millinery cloche bisque',
-  price: 24.86,
-  category: 'Clothing',
-  era: '1930s',
-  stock: 2,
-  imageLink: 'https://i.etsystatic.com/11889698/r/il/ea2e1f/1495538949/il_794xN.1495538949_6uyj.jpg',
-  itemDescription: 'Peach 100% flax linen forms the base of this pillbox or flapper style 1:24 miniature hat. It is adorned with a pure silk ribbon in a blue-teal artisan-hand-dyed colorway, as well as an ivory pure silk ribbon. The main bow has tiny glass beads down the middle, and there is also a second bow. Looks good from every angle; can be worn as desired. Very petite white lace adorns the bottom.'
-};
-
 const initialState = {
-  allProducts: [testItem],
+  allProducts: [],
   displayedProducts: [],
   categories: [],
 };
@@ -22,10 +12,15 @@ function productsReducer(state = initialState, action) {
 
   switch (type) {
     case types.GET_ALL_PRODUCTS:
+      const categories = payload.reduce((array, el) => {
+        if (!array.includes(el.category)) array.push(el.category);
+        return array;
+      }, []);
       return ({
         ...state,
         displayedProducts: payload,
         allProducts: payload,
+        categories,
       });
 
     case types.GET_FILTERED_PRODUCTS:

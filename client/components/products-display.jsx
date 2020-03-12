@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import OneProduct from './one-product.jsx';
+import { getAllProducts }from '../actions/product-actions';
 
 
 function ProductsDisplay() {
   const allProducts = useSelector((state) => state.products.allProducts);
+  const dispatch = useDispatch();
+  const displayedProducts = useSelector((state) => state.products.displayedProducts);
 
-  const productsArray = allProducts.map((el) => (
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, []);
+
+  console.log(allProducts)
+
+  const productsArray = displayedProducts.map((el) => (
     <OneProduct
-      nameOfItem={el.nameOfItem}
+      id={el.id}
+      nameOfItem={el.item}
       price={el.price}
-      imageLink={el.imageLink}
+      imageLink={el.link}
     />
   ));
-
-  console.log('products:', allProducts);
   return (
-    <div>
-      <p>Hoi it is Products!</p>
-      {productsArray}
-    </div>
+      <div>
+        {productsArray}
+      </div>
   );
 }
 
