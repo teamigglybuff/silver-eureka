@@ -29,23 +29,23 @@ function productsReducer(state = initialState, action) {
 
     // DO FETCH IN FRONT END
     case types.INCREMENT_PRODUCT_QUANTITY:
-      const allProducts = state.allProducts.map((el) => {
+      const incrementedProducts = state.allProducts.map((el) => {
         if (el.id === payload) el.id += 1;
         return el;
       });
       return ({
         ...state,
-        allProducts,
+        allProducts: incrementedProducts
       });
 
     case types.DECREMENT_PRODUCT_QUANTITY:
-      const allProducts = state.allProducts.map((el) => {
+      const decrementProducts = state.allProducts.map((el) => {
         if (el.id === payload) el.id -= 1;
         return el;
       });
       return ({
         ...state,
-        allProducts,
+        allProducts: decrementProducts
       });
 
     default:

@@ -31,7 +31,6 @@ storeController.getByCategory = (req, res, next) => {
 // gets the item by id
 storeController.getById = (req, res, next) => {
   const { id } = req.params;
-  console.log('This is the id: ', id)
   const item = 'SELECT * FROM store where id = $1'
   db.query(item, [id], (err, response) => {
     if (err) next({

@@ -1,17 +1,18 @@
 const express = require('express');
 const path = require('path');
-const productsRouter = require('./routes/productsApi.js');
+const cookieParser = require('cookie-parser')
+const productsRouter = require('./routes/productsApi');
 const mongoose = require('mongoose');
 const userControllers = require('./controller/userControllers');
+const authController = require('./controller/authControllers');
 
 const app = express();
 const PORT = 3000;
 
 
-
-
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(cookieParser());
 app.use(express.static('public'));
 
 app.use('/dist', express.static(path.resolve(__dirname, '../dist/')));
@@ -24,26 +25,23 @@ mongoose.connect(mongoUri, {
 })
 
 app.use((req, res, next) => {
-  console.log('-----FLOW TEST-----')
-  console.log()
-  console.log('Endpoint ', req.url)
-  console.log('Method ', req.method)
-  console.log('Body ', req.body)
-  console.log('Query ', req.query)
+  console.log('-----FLOW TEST-----');
+  console.log('Endpoint ', req.url);
+  console.log('Method ', req.method);
+  console.log('Body ', req.body);
+  console.log('Query ', req.query);
+  console.log('------------------');
   return next();
 })
 
-// TODO should I send anything back here? 
 // Creates a new user
-app.post('/createUser', userControllers.addUser, (req, res, next) => {
-  console.log('HEY!!!')
+app.post('/signUp', userControllers.check, authController.encrypt, userControllers.signUp, (req, res, next) => {
   res.status(200).json("user created!");
-})
+});
 
-app.get('/getUser', userControllers.checkUser, (req, res, next) => {
+app.get('/login', userControllers.login, authController.setCookies, (req, res, next) => {
   res.status(200).json("User found!")
-})
-
+});
 
 
 app.use('/products', productsRouter);
@@ -56,10 +54,10 @@ app.use((err, req, res, next) => {
     status: 400,
     message: 'Unknown error within middleware'
   }
-  console.log('This is the err', err)
+  // console.log('This is the err', err)
   const newErr = Object.assign(defaultErr, err);
   return res.status(newErr.status).json(newErr.message);
-})
+});
 
 
 app.listen(PORT, () => console.log('server listening on port ', PORT));
