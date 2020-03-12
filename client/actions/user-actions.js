@@ -1,23 +1,26 @@
 import * as types from '../constants/action-types';
 
-export const login = (username, userID) => {
+export const login = (username, password) => {
     const config = {
         method: 'POST',
         headers: {
             'Content-Type' : 'application/json',
         },
-        body: JSON.stringify({userID, username}),
+        body: JSON.stringify({username, password}),
     };
 
     return (dispatch) => {
+        console.log('hello')
         fetch('/login', config)
-        .then((res) => res.json())
+        .then((res) => res.text())
         .then((data) => {
+            console.log(username, password);
           dispatch({
            type: types.LOGIN,
            payload: {
            username,
-           userID
+           password,
+           data
           }
          })   
         })
