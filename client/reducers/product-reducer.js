@@ -12,10 +12,15 @@ function productsReducer(state = initialState, action) {
 
   switch (type) {
     case types.GET_ALL_PRODUCTS:
+      const categories = payload.reduce((array, el) => {
+        if (!array.includes(el.category)) array.push(el.category);
+        return array;
+      }, []);
       return ({
         ...state,
         displayedProducts: payload,
         allProducts: payload,
+        categories,
       });
 
     case types.GET_FILTERED_PRODUCTS:
@@ -29,23 +34,23 @@ function productsReducer(state = initialState, action) {
 
     // DO FETCH IN FRONT END
     case types.INCREMENT_PRODUCT_QUANTITY:
-      const incrementedProducts = state.allProducts.map((el) => {
+      const increasedAllProducts = state.allProducts.map((el) => {
         if (el.id === payload) el.id += 1;
         return el;
       });
       return ({
         ...state,
-        allProducts: incrementedProducts
+        allProducts: increasedAllProducts,
       });
 
     case types.DECREMENT_PRODUCT_QUANTITY:
-      const decrementProducts = state.allProducts.map((el) => {
+      const decreasedAllProducts = state.allProducts.map((el) => {
         if (el.id === payload) el.id -= 1;
         return el;
       });
       return ({
         ...state,
-        allProducts: decrementProducts
+        allProducts: decreasedAllProducts,
       });
 
     default:
