@@ -1,0 +1,36 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+.loginForm {
+   width:  33%;
+   height: 52vh;
+   border: 1px black solid;
+   margin-top: 4%;
+}
+
+.loginForm > input {
+    margin-top: 4%;
+}
+
+
+/*For Mobile Devices */
+@media screen and (max-width: 600px) { 
+  .loginForm {
+      width: 70%;
+      margin-top: 22%;
+    
+  }
+ }
+
+ /*Medium Screens */
+
+ @media screen and (max-width: 900px) and (min-width: 601px) {
+    .loginForm {
+        width:55% !important;
+        margin-top: 12%;
+    }
+  }
+  
+
+
